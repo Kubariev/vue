@@ -1,5 +1,3 @@
-# story
-
 ## Project setup
 ```
 npm install
@@ -24,6 +22,10 @@ npm run test:unit
 ```
 npm run lint
 ```
+
+# storyBook
+npm run storybook:serve -p 6006 -c config/storybook
+
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
