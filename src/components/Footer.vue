@@ -1,26 +1,25 @@
 <template>
   <footer class="footer">
-    <a href="#" class="footer_logo" title="homepage">
-      <img src="../assets/home_logo.png" alt="">
+    <a href="/" class="footer_logo" title="homepage">
+      <img src="../assets/logo.png" alt="">
     </a>
   </footer>
 </template>
 
 <script>
-export default {
-  name: 'Footer',
+  export default {
+    name: 'Footer',
 
-  methods: {
-    onClick() {
-      this.$emit('click')
+    methods: {
+      onClick() {
+        this.$emit('click')
+      }
     }
   }
-}
 </script>
 
 <style scoped>
   .footer {
-    background: #424242;
     padding: 15px;
     overflow: hidden;
     max-width: 1360px;
