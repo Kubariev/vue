@@ -37,7 +37,7 @@ export default {
 
   methods: {
     searchMovies() {
-      let searchField,
+      var searchField,
           selectedOption = this.options.filter((option) => option.selected);
       if (selectedOption.length > 0) searchField = selectedOption[0].id;
       else {
