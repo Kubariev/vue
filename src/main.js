@@ -3,6 +3,7 @@ import underscore from 'vue-underscore';
 import Home from "./Home.vue";
 import Movie from "./Movie.vue";
 import NotFound from "./NotFound.vue";
+import '@/styles/global.scss';
 
 const homeRoute = "/";
 const movieRoutePattern = /^\/movies\/[0-9]+$/;
@@ -12,6 +13,7 @@ Vue.use(underscore);
 
 new Vue({
   el: "#app",
+  delimiters: ["{{", "}}"],
   data: {
     currentRoute: window.location.pathname,
   },
