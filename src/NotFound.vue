@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <navigation-bar :searchIconPresent="false" />
+    <top-bar :searchIconPresent="false" />
     <p class="error-404">We're sorry but this page is not available.</p>
     <error-footer />
   </div>
