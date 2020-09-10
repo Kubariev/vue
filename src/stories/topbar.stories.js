@@ -1,14 +1,26 @@
-import { action } from '@storybook/addon-actions'
-
-import TopBar from '../components/TopBar.vue'
+import TopBar from "./../components/TopBar.vue";
 
 export default {
-  component: [TopBar],
-  title: 'TopBar'
-}
+  title: "TopBar",
+  component: TopBar,
+  argTypes: {
+    searchIcon: Boolean,
+  },
+};
 
-export const Header = () => ({
-  components: { TopBar },
-  template: '<TopBar></TopBar>',
-  methods: { action: action('clicked') }
-})
+const Template = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
+  components: { NavigationBar },
+  template:
+    '<navigation-bar v-bind="$props" />',
+});
+
+export const TopBarWithIcon = Template.bind({});
+TopBarWithIcon.args = {
+  searchIcon: true
+};
+
+export const TopBarWithoutIcon = Template.bind({});
+TopBarWithoutIcon.args = {
+  searchIcon: false
+};

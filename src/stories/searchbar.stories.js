@@ -1,14 +1,16 @@
-import { action } from '@storybook/addon-actions'
-
-import SearchBar from '../components/SearchBar.vue'
+import SearchBar from "./../components//SearchBar.vue";
 
 export default {
-  component: [SearchBar],
-  title: 'SearchBar'
-}
+  title: "SearchBar",
+  component: SearchBar,
+};
 
-export const SearchForm = () => ({
+const Template = (args, { argTypes }) => ({
+  props: Object.keys(argTypes),
   components: { SearchBar },
-  template: '<SearchBar></SearchBar>',
-  methods: { action: action('clicked') }
-})
+  template:
+    '<div style="background-color: black; min-height: 300px"><search-bar /></div>',
+});
+
+export const DefaultSearchBar = Template.bind({});
+DefaultSearchBar.args = {};
