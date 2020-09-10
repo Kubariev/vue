@@ -17,10 +17,14 @@ import MovieItem from "./MovieItem.vue";
 export default {
   name: "MovieResults",
   components: { GenreList, MovieItem },
-  props: {
-    movies: Array,
-    movie: Object,
-  },
+  computed: {
+    movie() {
+      return this.$store.getters.getMovieId;
+    },
+    movies() {
+      return this.$store.getters.getMoviesGenres(this.movie);
+    },
+  }
 };
 </script>
 

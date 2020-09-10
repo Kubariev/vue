@@ -2,7 +2,7 @@
   <header class="movie_header">
     <div class="movie_header_blur">
       <top-bar :searchIcon="true" />
-      <movie-details :movie="movie" />
+      <movie-details />
     </div>
   </header>
 </template>
@@ -16,9 +16,6 @@ export default {
   components: {
     TopBar,
     MovieDetails,
-  },
-  props: {
-    movie: Object,
   },
 };
 </script>
