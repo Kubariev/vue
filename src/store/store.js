@@ -14,13 +14,13 @@ export default new Vuex.Store({
             return state.movies;
         },
 
-        getMovieId: (state) => {
+        getMovieById: (state) => {
             var path = window.location.pathname;
             var movieId = path.split("/")[2];
             return _.find(state.movies, (movie) => movie.id === movieId);
         },
 
-        getMoviesGenres: (state) => (target) => {
+        getMoviesByGenres: (state) => (target) => {
             return _.filter(state.movies, (movie) => {
                 if (target.id === movie.id) return false;
                 return _.intersection(target.genre, movie.genre).length > 0;

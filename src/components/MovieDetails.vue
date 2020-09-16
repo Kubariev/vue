@@ -34,7 +34,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      movie: "getMovieId",
+      movie: "getMovieById",
     }),
 
     genreList() {
