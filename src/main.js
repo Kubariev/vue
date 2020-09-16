@@ -1,4 +1,5 @@
 import Vue from "vue";
+import store from './store/store.js';
 import underscore from 'vue-underscore';
 import Home from "./Home.vue";
 import Movie from "./Movie.vue";
@@ -13,6 +14,7 @@ Vue.use(underscore);
 
 new Vue({
   el: "#app",
+  store,
   delimiters: ["{{", "}}"],
   data: {
     currentRoute: window.location.pathname,
