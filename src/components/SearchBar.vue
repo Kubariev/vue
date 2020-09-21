@@ -1,7 +1,7 @@
 <template>
   <div class="search_wrap">
     <h1>Find your movie</h1>
-    <form class="search">
+    <section class="search">
       <div class="search_actions">
         <search-button msg="Search" @onClick="searchFilms" />
       </div>
@@ -13,7 +13,7 @@
               placeholder="Search for films"
       />
       <switch-bar switchName="Search by" :options="options" @changeSort="changeSearchOption" />
-    </form>
+    </section>
   </div>
 </template>
 
