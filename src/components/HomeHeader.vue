@@ -2,7 +2,7 @@
   <header class="header">
     <div class="header_wrapper">
       <top-bar :searchIcon="false" />
-      <search-bar @searchMovies="searchMovies" />
+      <search-bar />
     </div>
   </header>
 </template>
@@ -16,11 +16,6 @@ export default {
   components: {
     TopBar,
     SearchBar,
-  },
-  methods: {
-    searchMovies(searchRequest) {
-      this.$emit("searchMovies", searchRequest);
-    },
   },
 };
 </script>
