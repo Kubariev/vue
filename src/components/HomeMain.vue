@@ -1,14 +1,11 @@
 <template>
   <main class="movies_wrapper">
-    <search-results
-      :moviesLength="movies.length"
-      @sortingChanged="changeSorting"
-    />
-    <div v-if="movies.length" class="movies_list">
-      <movie-item v-for="movie in sortedList" :key="movie.id" :movie="movie" />
+    <search-results :moviesLength="movies.length"/>
+    <div class="movies_list" v-if="movies.length">
+      <movie-item v-for="movie in movies" :key="movie.id" :movie="movie" />
     </div>
     <div v-else class="results_empty">
-      No films found
+      Empty results
     </div>
   </main>
 </template>
@@ -16,28 +13,15 @@
 <script>
 import MovieItem from "./MovieItem.vue";
 import SearchResults from "./SearchResults.vue";
+import { mapGetters } from "vuex";
 
 export default {
   name: "HomeMain",
   components: { SearchResults, MovieItem },
-  props: {
-    movies: Array,
-  },
-
-  data: function() {
-    return { sortingOption: "releaseDate" };
-  },
-
   computed: {
-    sortedList() {
-      return this.$_.sortBy(this.movies, this.sortingOption).reverse();
-    },
-  },
-
-  methods: {
-    changeSorting(newSortingOption) {
-      this.sortingOption = newSortingOption;
-    },
+    ...mapGetters({
+      movies: "getAllFilms",
+    }),
   },
 };
 </script>

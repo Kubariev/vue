@@ -3,14 +3,14 @@
     <span v-if="switchName" class="general-switch_title">{{ switchName }}</span>
     <div class="general-switch_btn-group">
       <button
-        type="button"
         v-for="(option, index) in options"
         :key="option.id"
+        type="button"
         :class="{
           'general-btn general-btn_switch': true,
           'general-btn_active': option.selected,
         }"
-        @click="changeSelection(index)"
+        @click="changeSort(index)"
       >
         {{ option.text }}
       </button>
@@ -30,9 +30,11 @@ export default {
   },
 
   methods: {
-    changeSelection(index) {
+    changeSort(index) {
       this.options.forEach((option) => (option.selected = false));
       this.options[index].selected = true;
+
+      this.$emit('changeSort', this.options[index].id);
     },
   },
 };

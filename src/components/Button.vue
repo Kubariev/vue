@@ -32,7 +32,7 @@ export default {
 
 .general-btn_search {
   border-radius: 5px;
-  font-size: 120%;
+  font-size: 1.2rem;
   width: 20%;
 }
 </style>
