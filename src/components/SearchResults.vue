@@ -2,9 +2,9 @@
   <div class="search_results">
     <div class="search_results_wrap">
       <span class="search_results-title">
-        {{ resultsString }}
+        {{ searchResults }}
       </span>
-      <switch-bar switchName="Sort by" :options="options" />
+      <switch-bar switchName="Sort by" :options="options" @changeSort="changeSorting" />
     </div>
   </div>
 </template>
@@ -22,28 +22,23 @@ export default {
   data: function() {
     return {
       options: [
-        { id: "releaseDate", text: "Release Date", selected: true },
-        { id: "rating", text: "Rating", selected: false },
+        { text: "Release Date", id: "releaseDate", selected: true },
+        { text: "Rating", id: "rating", selected: false },
       ],
     };
   },
 
   computed: {
-    resultsString() {
+    searchResults() {
       let length = this.moviesLength;
       if (length === 0) return "";
       return `${length} movie${length > 1 ? "s" : ""} found`;
     },
-    sorting() {
-      let selected = this.options.filter((option) => option.selected);
-      if (selected.length > 0) return selected[0].id;
-      return "releaseDate";
-    },
   },
 
-  watch: {
-    sorting: function(newSortingOption) {
-      this.$emit("sortingChanged", newSortingOption);
+  methods: {
+    changeSorting(sortOption) {
+      this.$store.commit("CHANGE_SORT_OPTION", sortOption);
     },
   },
 };

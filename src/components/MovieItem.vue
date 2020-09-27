@@ -26,6 +26,7 @@ export default {
   computed: {
     genreList() {
       let movie = this.$props.movie;
+
       return movie.genre.join(" & ");
     },
     movieUrl() {
@@ -34,7 +35,11 @@ export default {
   },
   methods: {
     getImgUrl(pic) {
-      return require("../assets/posters/" + pic);
+      if(/(http(s?)):\/\//i.test(pic)) {
+        return pic;
+      } else {
+        return require("../assets/posters/" + pic);
+      }
     },
   },
 };

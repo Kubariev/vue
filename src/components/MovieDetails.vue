@@ -34,7 +34,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      movie: "getMovieById",
+      movie: "getFilmsById",
     }),
 
     genreList() {
@@ -46,7 +46,11 @@ export default {
   },
   methods: {
     getImgUrl(pic) {
-      return require("../assets/posters/" + pic);
+      if(/(http(s?)):\/\//i.test(pic)) {
+        return pic;
+      } else {
+        return require("../assets/posters/" + pic);
+      }
     },
 
     getRating(val) {

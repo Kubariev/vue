@@ -1,33 +1,32 @@
 <template>
   <div class="search_wrap">
     <h1>Find your movie</h1>
-    <form class="search">
+    <section class="search">
       <div class="search_actions">
-        <my-button msg="Search" @onClick="searchMovies" />
+        <search-button msg="Search" @onClick="searchFilms" />
       </div>
       <input
+              v-model="query"
               type="text"
               class="search_input"
-              placeholder="Search for movies"
-              v-model="query"
-              @keyup.enter="searchMovies"
+              v-on:keyup.13="searchFilms"
+              placeholder="Search for films"
       />
-      <switch-bar switchName="Search by" :options="options" />
-    </form>
+      <switch-bar switchName="Search by" :options="options" @changeSort="changeSearchOption" />
+    </section>
   </div>
 </template>
 
 <script>
-import MyButton from "./Button.vue";
+import SearchButton from "./Button.vue";
 import SwitchBar from "./SwitchBar.vue";
 
 export default {
   name: "SearchBar",
-  components: { MyButton, SwitchBar },
+  components: { SearchButton, SwitchBar },
 
   data: function() {
     return {
-      query: "",
       options: [
         { id: "title", text: "Title", selected: true },
         { id: "genre", text: "Genre", selected: false },
@@ -35,18 +34,23 @@ export default {
     };
   },
 
+  computed: {
+    query: {
+      get() {
+        return this.$store.state.searchText;
+      },
+      set(query) {
+        this.$store.commit("CHANGE_SEARCH_INPUT", query);
+      },
+    },
+  },
+
   methods: {
-    searchMovies() {
-      var searchField,
-          selectedOption = this.options.filter((option) => option.selected);
-      if (selectedOption.length > 0) searchField = selectedOption[0].id;
-      else {
-        searchField = "title";
-      }
-      this.$emit("searchMovies", {
-        query: this.query.toLowerCase().trim(),
-        searchField,
-      });
+    searchFilms() {
+      this.$store.commit("SEARCH_FILMS");
+    },
+    changeSearchOption(searchOption) {
+      this.$store.commit("CHANGE_SEARCH_OPTION", searchOption);
     },
   },
 };
