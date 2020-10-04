@@ -1,22 +1,26 @@
 <template>
   <div class="movie_details">
     <img class="movie_details_img" :src="getImgUrl(movie.poster)" />
+
     <div class="movie_details_wrap">
       <div class="movie_details_title">
         {{ movie.title }}
         <div class="movie_details_rating">
-          {{ getRating(movie.rating) }}
+          {{ movie.rating | parseFloor }}
         </div>
       </div>
+
       <div class="movie_details_genre">
         {{ genreList }}
       </div>
+
       <div class="movie_details_release-wrap">
         <span class="movie_details_release">
           {{ movie.releaseDate }} <span>year</span>
         </span>
-        <span class="movie_details_duration"> {{ movie.duration }} <span>min</span></span>
+        <span class="movie_details_duration"> {{ movie.duration | parseHour }} <span>hour</span> {{ movie.duration | parseMin }} <span>min</span></span>
       </div>
+
       <div class="movie_details_desc">
         {{ movie.description }}
       </div>
@@ -51,11 +55,7 @@ export default {
       } else {
         return require("../assets/posters/" + pic);
       }
-    },
-
-    getRating(val) {
-      return parseFloat(val).toFixed(1);
-    },
+    }
   },
 };
 </script>

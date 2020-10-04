@@ -1,15 +1,18 @@
 <template>
   <div class="movie_item">
-    <a class="movie_item_img-link" :href="movieUrl">
-      <img class="movie_item_img" :src="getImgUrl(movie.poster)" />
+    <a v-lazyloading class="movie_item_img-link" :href="movieUrl">
+      <img class="movie_item_img" :src="getImgUrl(movie.poster)" :alt="movie.title" />
     </a>
+
     <div class="movie_item_details">
       <div class="movie_item_title">
         {{ movie.title }}
       </div>
+
       <div class="movie_item_year">
         {{ movie.releaseDate }}
       </div>
+
       <div class="movie_item_genre">
         {{ genreList }}
       </div>
@@ -58,6 +61,12 @@ export default {
 .movie_item_img {
   width: 100%;
   height: 450px;
+  opacity: 0;
+  -webkit-transition: opacity 2s ease-in;
+  -moz-transition: opacity 2s ease-in;
+  -ms-transition: opacity 2s ease-in;
+  -o-transition: opacity 2s ease-in;
+  transition: opacity 2s ease-in;
 }
 
 .movie_item_details {
@@ -82,5 +91,9 @@ export default {
 .movie_item_genre {
   margin: 8px 0;
   opacity: 0.7;
+}
+
+.faded {
+  opacity: 1;
 }
 </style>

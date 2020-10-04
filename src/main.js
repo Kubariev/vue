@@ -1,5 +1,6 @@
 import Vue from "vue";
 import store from './store/store.js';
+import lazyloading from './plugins/lazy.js';
 import underscore from 'vue-underscore';
 import Home from "./Home.vue";
 import Movie from "./Movie.vue";
@@ -10,6 +11,7 @@ const homeRoute = "/";
 const movieRoutePattern = /^\/movies\/[0-9]+$/;
 
 Vue.config.productionTip = false;
+Vue.use(lazyloading);
 Vue.use(underscore);
 
 new Vue({
