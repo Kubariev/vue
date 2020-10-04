@@ -13,8 +13,7 @@ export default {
     window["IntersectionObserver"] ? funcObserver() : preloadImages();
 
     function preloadImages() {
-      let imageElement = el.getElementsByTagName('IMG')[0];
-      imageElement.classList.add("faded");
+      el.classList.add("faded");
     }
 
     function checkImages(items, observer) {

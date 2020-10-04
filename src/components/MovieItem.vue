@@ -1,6 +1,6 @@
 <template>
-  <div class="movie_item">
-    <a v-lazyloading class="movie_item_img-link" :href="movieUrl">
+  <div class="movie_item" v-lazyloading>
+    <a class="movie_item_img-link" :href="movieUrl">
       <img class="movie_item_img" :src="getImgUrl(movie.poster)" :alt="movie.title" />
     </a>
 
@@ -56,17 +56,17 @@ export default {
   flex-flow: column wrap;
   color: #fff;
   font-family: "Montserrat", sans-serif;
-}
-
-.movie_item_img {
-  width: 100%;
-  height: 450px;
   opacity: 0;
   -webkit-transition: opacity 2s ease-in;
   -moz-transition: opacity 2s ease-in;
   -ms-transition: opacity 2s ease-in;
   -o-transition: opacity 2s ease-in;
   transition: opacity 2s ease-in;
+}
+
+.movie_item_img {
+  width: 100%;
+  height: 450px;
 }
 
 .movie_item_details {
