@@ -6,6 +6,7 @@ import Home from "./Home.vue";
 import Movie from "./Movie.vue";
 import NotFound from "./NotFound.vue";
 import '@/styles/global.scss';
+import axiosApi from "./../src/axios";
 
 const homeRoute = "/";
 const movieRoutePattern = /^\/movies\/[0-9]+$/;
@@ -13,6 +14,7 @@ const movieRoutePattern = /^\/movies\/[0-9]+$/;
 Vue.config.productionTip = false;
 Vue.use(lazyloading);
 Vue.use(underscore);
+axiosApi.init();
 
 new Vue({
   el: "#app",

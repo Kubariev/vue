@@ -22,8 +22,8 @@ export default {
   data: function() {
     return {
       options: [
-        { text: "Release Date", id: "releaseDate", selected: true },
-        { text: "Rating", id: "rating", selected: false },
+        { text: "Release Date", id: "release_date", selected: true },
+        { text: "Rating", id: "vote_average", selected: false },
       ],
     };
   },

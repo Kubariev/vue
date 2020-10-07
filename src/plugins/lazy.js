@@ -16,7 +16,7 @@ export default {
     });
 
     Vue.filter("parseFloor", function(value) {
-      return parseFloat(value).toFixed(1);
+      return parseFloat(value).toFixed(0);
     });
   },
 };
