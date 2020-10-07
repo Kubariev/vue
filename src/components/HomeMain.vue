@@ -1,9 +1,11 @@
 <template>
   <main class="movies_wrapper">
     <search-results :moviesLength="movies.length"/>
+
     <div class="movies_list" v-if="movies.length">
       <movie-item v-for="movie in movies" :key="movie.id" :movie="movie" />
     </div>
+
     <div v-else class="results_empty">
       Empty results
     </div>

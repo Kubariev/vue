@@ -1,9 +1,11 @@
 <template>
   <main class="movie_results">
     <genre-list :genres="movie.genre" />
+
     <div v-if="movies.length" class="movies_list">
       <movie-item v-for="movie in movies" :key="movie.title" :movie="movie" />
     </div>
+
     <div v-else class="movies_empty">
       No films found
     </div>
@@ -32,7 +34,7 @@ export default {
 .movie_results {
   width: 100%;
   height: 100%;
-  background-color: #232323;
+  background-color: #222;
 }
 .movies_list {
   display: flex;
@@ -42,8 +44,8 @@ export default {
 }
 .movies_empty {
   font-family: "Montserrat", sans-serif;
-  color: #fff;
-  opacity: 0.8;
+  color: white;
+  opacity: .8;
   text-align: center;
   font-size: 300%;
   min-height: 500px;
