@@ -1,7 +1,7 @@
 <template>
   <div class="movie_item" v-lazyloading>
     <a class="movie_item_img-link" :href="movieUrl">
-      <img class="movie_item_img" :src="getImgUrl(movie.poster)" :alt="movie.title" />
+      <img class="movie_item_img" :src="movie.poster_path" :alt="movie.title" />
     </a>
 
     <div class="movie_item_details">
@@ -10,7 +10,7 @@
       </div>
 
       <div class="movie_item_year">
-        {{ movie.releaseDate }}
+        {{ movie.release_date }}
       </div>
 
       <div class="movie_item_genre">
@@ -30,19 +30,10 @@ export default {
     genreList() {
       let movie = this.$props.movie;
 
-      return movie.genre.join(" & ");
+      return movie.genres.join(" & ");
     },
     movieUrl() {
-      return `/movies/${this.$props.movie.id}`;
-    },
-  },
-  methods: {
-    getImgUrl(pic) {
-      if(/(http(s?)):\/\//i.test(pic)) {
-        return pic;
-      } else {
-        return require("../assets/posters/" + pic);
-      }
+      return `/movies/${this.movie.id}`;
     },
   },
 };

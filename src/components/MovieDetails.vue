@@ -1,13 +1,10 @@
 <template>
-  <div class="movie_details">
-    <img class="movie_details_img" :src="getImgUrl(movie.poster)" />
+  <div class="movie_details" v-if="movie">
+    <img class="movie_details_img" :src="movie.poster_path" />
 
     <div class="movie_details_wrap">
-      <div class="movie_details_title">
+      <div class="movie_details_title" v-if="movie.title">
         {{ movie.title }}
-        <div class="movie_details_rating">
-          {{ movie.rating | parseFloor }}
-        </div>
       </div>
 
       <div class="movie_details_genre">
@@ -15,14 +12,16 @@
       </div>
 
       <div class="movie_details_release-wrap">
-        <span class="movie_details_release">
-          {{ movie.releaseDate }} <span>year</span>
+        <span class="movie_details_release" v-if="movie.release_date">
+          {{ movie.release_date | parseFloor }} <span>year</span>
         </span>
-        <span class="movie_details_duration"> {{ movie.duration | parseHour }} <span>hour</span> {{ movie.duration | parseMin }} <span>min</span></span>
+        <span class="movie_details_duration" v-if="movie.runtime">
+          {{ movie.runtime  | parseHour }} <span>hour</span> {{ movie.runtime  | parseMin }} <span>min</span>
+        </span>
       </div>
 
-      <div class="movie_details_desc">
-        {{ movie.description }}
+      <div class="movie_details_desc" v-if="movie.overview">
+        {{ movie.overview  }}
       </div>
     </div>
   </div>
@@ -33,9 +32,6 @@ import { mapGetters } from "vuex";
 
 export default {
   name: "MovieDetails",
-  props: {
-    movie: Object,
-  },
   computed: {
     ...mapGetters({
       movie: "getFilmsById",
@@ -45,19 +41,14 @@ export default {
       let movie = this.movie;
       if (!movie) return "";
 
-      return movie.genre.join(" & ");
+      return movie.genres.join(" & ");
     },
   },
-  methods: {
-    getImgUrl(pic) {
-      if(/(http(s?)):\/\//i.test(pic)) {
-        return pic;
-      } else {
-        return require("../assets/posters/" + pic);
-      }
-    }
+  created() {
+    this.$store.dispatch("GET_FILM_DETAILS");
   },
 };
+
 </script>
 
 <style>

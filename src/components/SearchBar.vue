@@ -29,7 +29,7 @@ export default {
     return {
       options: [
         { id: "title", text: "Title", selected: true },
-        { id: "genre", text: "Genre", selected: false },
+        { id: "genres", text: "Genre", selected: false },
       ],
     };
   },
@@ -47,7 +47,7 @@ export default {
 
   methods: {
     searchFilms() {
-      this.$store.commit("SEARCH_FILMS");
+      this.$store.dispatch("SHOW_FILMS");
     },
     changeSearchOption(searchOption) {
       this.$store.commit("CHANGE_SEARCH_OPTION", searchOption);

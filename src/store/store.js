@@ -1,7 +1,6 @@
-import { _ } from "vue-underscore";
 import Vue from "vue";
 import Vuex from "vuex";
-import moviesJson from "./../assets/movies.json";
+import axiosApi from "./../axios";
 
 Vue.use(Vuex);
 
@@ -9,46 +8,21 @@ export default new Vuex.Store({
     state: {
         searchText: "",
         searchOption: "title",
-        sortOption: "releaseDate",
-        movies: moviesJson,
+        sortOption: "release_date",
+        movies: [],
+        movieById: null,
     },
     getters: {
         getAllFilms: (state) => {
-            return _.sortBy(state.movies, state.sortOption).reverse();
+            return state.movies.sort((a, b) => b[state.sortOption] - a[state.sortOption]);
         },
 
         getFilmsById: (state) => {
-            let path = window.location.pathname;
-            let id = path.split("/")[2];
-            return _.find(state.movies, (movie) => movie.id === id);
-        },
-
-        getFilmsByGenre: (state) => (target) => {
-            return _.filter(state.movies, (movie) => {
-                if (target.id === movie.id) return false;
-                return _.intersection(target.genre, movie.genre).length > 0;
-            });
+            return state.movieById;
         },
     },
 
     mutations: {
-        SEARCH_FILMS(state) {
-            let searchText = state.searchText.toLowerCase().trim();
-            if (!searchText) {
-                state.movies = moviesJson;
-            } else {
-                state.movies = _.filter(moviesJson, (movie) => {
-                    let movieSearch = movie[state.searchOption];
-
-                    if (Array.isArray(movieSearch))
-                        movieSearch = movieSearch.join(' ');
-                    movieSearch = movieSearch.toLowerCase();
-
-                    return movieSearch.includes(searchText);
-                });
-            }
-        },
-
         CHANGE_SEARCH_INPUT(state, searchText) {
             state.searchText = searchText;
         },
@@ -61,5 +35,34 @@ export default new Vuex.Store({
             state.searchOption = searchOption;
         },
 
+    },
+
+    actions: {
+        SHOW_FILMS({ state }) {
+            let text = state.searchText.toLowerCase().trim(),
+                sortOpt = state.sortOption,
+                searchOpt = state.searchOption;
+
+            return axiosApi.getMovies(sortOpt, searchOpt, text).then(
+                (result) => {
+                    state.movies = result;
+                }
+            );
+        },
+
+        FILM_BY_ID({ state }, id) {
+            return axiosApi.getFilmsById(id).then((result) => {
+                state.movieById = result;
+            });
+        },
+
+        FILM_BY_GENRES({ state }) {
+            return axiosApi.getFilmsByGenres(
+                state.sortOption,
+                state.movieById.genres
+            ).then((result) => {
+                state.movies = result;
+            });
+        },
     },
 });

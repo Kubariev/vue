@@ -1,6 +1,6 @@
 <template>
   <main class="movie_results">
-    <genre-list :genres="movie.genre" />
+    <genre-list v-if="movie" :genres="movie.genres" />
 
     <div v-if="movies.length" class="movies_list">
       <movie-item v-for="movie in movies" :key="movie.title" :movie="movie" />
@@ -24,7 +24,7 @@ export default {
       return this.$store.getters.getFilmsById;
     },
     movies() {
-      return this.$store.getters.getFilmsByGenre(this.movie);
+      return this.$store.getters.getMovies;
     },
   }
 };
