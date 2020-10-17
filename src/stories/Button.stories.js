@@ -1,25 +1,25 @@
-import MyButton from "./../components/Button.vue";
+import Button from "./../components/Button.vue";
 
 export default {
   title: "Button",
-  component: MyButton,
-  argTypes: {
+  component: Button,
+  opts: {
     msg: String,
   },
 };
 
-const Template = (args, { argTypes }) => ({
-  props: Object.keys(argTypes),
-  components: { MyButton },
-  template: '<my-button @onClick="onClick" v-bind="$props" />',
+const Template = (args, { opts }) => ({
+  props: Object.keys(opts),
+  components: { Button },
+  template: '<my-button v-bind="$props" @onClick="onClick" />',
 });
 
 export const Default = Template.bind({});
 Default.args = {
-  msg: "Default Button",
+  msg: "Default",
 };
 
-export const Other = Template.bind({});
-Other.args = {
-  msg: "Other Button",
+export const New = Template.bind({});
+New.args = {
+  msg: "New Button",
 };

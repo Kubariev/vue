@@ -3,24 +3,24 @@ import TopBar from "./../components/TopBar.vue";
 export default {
   title: "TopBar",
   component: TopBar,
-  argTypes: {
+  opts: {
     searchIcon: Boolean,
   },
 };
 
-const Template = (args, { argTypes }) => ({
-  props: Object.keys(argTypes),
-  components: { NavigationBar },
+const Template = (args, { opts }) => ({
+  props: Object.keys(opts),
+  components: { TopBar },
   template:
-    '<navigation-bar v-bind="$props" />',
+    '<top-bar v-bind="$props" />',
 });
 
-export const TopBarWithIcon = Template.bind({});
-TopBarWithIcon.args = {
-  searchIcon: true
+export const TopBarDefault = Template.bind({});
+TopBarDefault.args = {
+  searchIcon: false
 };
 
-export const TopBarWithoutIcon = Template.bind({});
-TopBarWithoutIcon.args = {
-  searchIcon: false
+export const TopBarIcon = Template.bind({});
+TopBarIcon.args = {
+  searchIcon: true
 };

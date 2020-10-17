@@ -5,8 +5,8 @@ export default {
   component: SearchResults,
 };
 
-const Template = (args, { argTypes }) => ({
-  props: Object.keys(argTypes),
+const Template = (args, { opts }) => ({
+  props: Object.keys(opts),
   components: { SearchResults },
   template: '<search-results v-bind="$props" />',
 });
@@ -14,8 +14,8 @@ const Template = (args, { argTypes }) => ({
 export const SearchWithResults = Template.bind({});
 SearchWithResults.args = {
   movies: [
-    { id: 1, title: "Action" },
-    { id: 2, title: "Drama" },
+    { id: 1, title: "Adventure" },
+    { id: 2, title: "Science Fiction" },
   ],
 };
 

@@ -5,8 +5,8 @@ export default {
   component: MovieItem,
 };
 
-const Template = (args, { argTypes }) => ({
-  props: Object.keys(argTypes),
+const Template = (args, { opts }) => ({
+  props: Object.keys(opts),
   components: { MovieItem },
   template:
     '<div style="background-color: #232323; height:100%"><movie-item v-bind="$props" /></div>',
@@ -15,37 +15,14 @@ const Template = (args, { argTypes }) => ({
 export const DefaultMovieItem = Template.bind({});
 DefaultMovieItem.args = {
   movie: {
-    title: "Back to the Future",
-    releaseDate: 1985,
-    genre: ["Adventure", "Comedy", "Sci-fi"],
-    poster: "back_to_the_future.jpg",
-  },
-};
-
-export const MovieItemWithLongTitle = Template.bind({});
-MovieItemWithLongTitle.args = {
-  movie: {
-    title: "Star Wars: Episode IX – The Rise of Skywalker",
-    releaseDate: 2019,
-    genre: ["Adventure", "Comedy", "Sci-fi"],
-    poster: "star_wars_5.jpg",
-  },
-};
-
-export const MovieItemWithALotOfGenres = Template.bind({});
-MovieItemWithALotOfGenres.args = {
-  movie: {
-    title: "Star Wars",
-    releaseDate: 2020,
-    genre: [
-      "Adventure",
-      "Comedy",
-      "Sci-fi",
-      "Animation",
-      "Fantasy",
-      "Thriller",
-      "Action",
-    ],
-    poster: "star_wars_5.jpg",
+    id: 447365,
+    title: "Guardians of the Galaxy Vol. 3",
+    release_date: "2020-05-01",
+    genres: ["Adventure", "Science Fiction", "Action"],
+    poster_path: "https://image.tmdb.org/t/p/w500/ldoY4fTZkGISMidNw60GHoNdgP8.jpg",
+    vote_average: 6,
+    vote_count: 9,
+    runtime: "116",
+    overview: "The third film based on Marvel's Guardians of the Galaxy."
   },
 };

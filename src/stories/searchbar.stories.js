@@ -5,8 +5,8 @@ export default {
   component: SearchBar,
 };
 
-const Template = (args, { argTypes }) => ({
-  props: Object.keys(argTypes),
+const Template = (args, { opts }) => ({
+  props: Object.keys(opts),
   components: { SearchBar },
   template:
     '<div style="background-color: black; min-height: 300px"><search-bar /></div>',

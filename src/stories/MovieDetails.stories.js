@@ -5,35 +5,24 @@ export default {
   component: MovieDetails,
 };
 
-const Template = (args, { argTypes }) => ({
-  props: Object.keys(argTypes),
+const Template = (args, { opts }) => ({
+  props: Object.keys(opts),
   components: { MovieDetails },
   template:
-    '<div style="background-color: #232323; height:100%"><movie-details v-bind="$props" /></div>',
+    '<div style="background-color: #2222; height:100%"><movie-details v-bind="$props" /></div>',
 });
 
 export const DefaultMovieDetails = Template.bind({});
 DefaultMovieDetails.args = {
   movie: {
-    title: "Back to the Future",
-    releaseDate: 1985,
-    genre: ["Adventure", "Comedy", "Sci-fi"],
-    poster: "back_to_the_future.jpg",
-    rating: "8.5",
-    duration: "116",
-    description: `Marty McFly, a 17-year-old high school student, is accidentally sent thirty years into the past in a time-traveling DeLorean  invented by his close friend, the eccentric scientist Doc Brown.`
-  },
-};
-
-export const MovieDetailsWithLongDescription = Template.bind({});
-MovieDetailsWithLongDescription.args = {
-  movie: {
-    title: "Star Wars: The Rise of Skywalker",
-    releaseDate: 2019,
-    genre: ["Adventure", "Action", "Fantasy"],
-    poster: "star_wars_5.jpg",
-    rating: "6.6",
-    duration: "141",
-    description: `Following a threat of revenge by the revived Emperor Palpatine, Kylo Ren obtains a Sith wayfinder, leading him to the uncharted planet Exegol. There, he finds Palpatine, who reveals that he created Snoke as a puppet to control the First Order and lure Kylo to the dark side. Palpatine unveils the Final Order—a secret armada of Star Destroyers—and tells Kylo to find and kill Rey, who is continuing her Jedi training under Resistance leader Leia Organa. Finn and Poe Dameron deliver intelligence from a spy that Palpatine is on Exegol; Rey has learned from Luke Skywalker's notes that a Sith wayfinder can lead them there. Rey, Finn, Poe, Chewbacca, BB-8, and C-3PO depart in the Millennium Falcon to Pasaana, where a clue to a wayfinder is hidden.`
+    id: 447365,
+    title: "Guardians of the Galaxy Vol. 3",
+    release_date: "2020-05-01",
+    genres: ["Adventure", "Science Fiction", "Action"],
+    poster_path: "https://image.tmdb.org/t/p/w500/ldoY4fTZkGISMidNw60GHoNdgP8.jpg",
+    vote_average: 6,
+    vote_count: 9,
+    runtime: "116",
+    overview: "The third film based on Marvel's Guardians of the Galaxy."
   },
 };

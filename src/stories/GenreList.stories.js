@@ -8,14 +8,14 @@ export default {
   },
 };
 
-const Template = (args, { argTypes }) => ({
-  props: Object.keys(argTypes),
+const Template = (args, { arg }) => ({
+  props: Object.keys(arg),
   components: { GenreList },
   template: '<genre-list v-bind="$props" />',
 });
 
 export const GenreListGenre = Template.bind({});
-GenreListOneGenre.args = {
+GenreListGenre.args = {
   genres: [ "Drama" ]
 };
 
