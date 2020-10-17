@@ -17,7 +17,10 @@ const axiosApi = {
             search,
           },
         })
-        .then((result) => result.data.data)
+        .then((result) => {
+          console.log(result.data.data[0]);
+          return result.data.data;
+        })
         .catch((error) => console.log(error));
   },
 

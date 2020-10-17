@@ -17,12 +17,6 @@ export default {
   props: {
     searchIcon: Boolean,
   },
-
-  methods: {
-    onClick() {
-      this.$emit("onClick");
-    },
-  },
 };
 </script>
 

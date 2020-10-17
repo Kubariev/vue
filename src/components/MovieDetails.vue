@@ -44,9 +44,6 @@ export default {
       return movie.genres.join(" & ");
     },
   },
-  created() {
-    this.$store.dispatch("GET_FILM_DETAILS");
-  },
 };
 
 </script>

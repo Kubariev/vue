@@ -1,38 +1,23 @@
 import Vue from "vue";
 import store from './store/store.js';
 import lazyloading from './plugins/lazy.js';
-import Home from "./Home.vue";
-import Movie from "./Movie.vue";
-import NotFound from "./NotFound.vue";
+import VueRouter from 'vue-router'
+import App from './routes/App.vue'
 import '@/styles/global.scss';
 import axiosApi from "./../src/axios";
-
-const homeRoute = "/";
-const movieRoutePattern = /^\/movies\/[0-9]+$/;
+import router from "./router";
 
 Vue.config.productionTip = false;
 Vue.use(lazyloading);
+Vue.use(VueRouter);
 axiosApi.init();
 
 new Vue({
   el: "#app",
   store,
+  router,
   delimiters: ["{{", "}}"],
-  data: {
-    currentRoute: window.location.pathname,
-  },
-  computed: {
-    ViewComponent() {
-      if (this.currentRoute === homeRoute) {
-        return Home;
-      } else if (movieRoutePattern.test(this.currentRoute)) {
-        return Movie;
-      } else {
-        return NotFound;
-      }
-    },
-  },
   render(h) {
-    return h(this.ViewComponent);
+    return h(App);
   },
 });

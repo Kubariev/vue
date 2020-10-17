@@ -20,11 +20,11 @@ export default {
   name: "MovieResults",
   components: { GenreList, MovieItem },
   computed: {
+    movies() {
+      return this.$store.getters.getAllFilms;
+    },
     movie() {
       return this.$store.getters.getFilmsById;
-    },
-    movies() {
-      return this.$store.getters.getMovies;
     },
   }
 };

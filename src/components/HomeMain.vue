@@ -25,10 +25,6 @@ export default {
       movies: "getAllFilms",
     }),
   },
-
-  created() {
-    this.$store.dispatch("SHOW_FILMS");
-  },
 };
 </script>
 
