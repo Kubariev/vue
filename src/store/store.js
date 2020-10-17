@@ -50,10 +50,7 @@ export default new Vuex.Store({
             );
         },
 
-        FILM_BY_ID({ state }) {
-            let path = window.location.pathname,
-                id = path.split("/")[2];
-
+        FILM_BY_ID({ state }, id) {
             return axiosApi.getFilmsById(id).then((result) => {
                 state.movieById = result;
             });
@@ -65,12 +62,6 @@ export default new Vuex.Store({
                 state.movieById.genres
             ).then((result) => {
                 state.movies = result;
-            });
-        },
-
-        GET_FILM_DETAILS({ dispatch }) {
-            return dispatch("FILM_BY_ID").then(() => {
-                dispatch("FILM_BY_GENRES");
             });
         },
     },
